@@ -1,0 +1,7 @@
+com\lumenore2\exceptionhandler\GlobalExceptionHandler.class
+com\lumenore2\exceptionhandler\DatabaseEmptyException.class
+com\lumenore2\controller\RatingController.class
+com\lumenore2\repository\RatingRepository.class
+com\lumenore2\service\RatingService.class
+com\lumenore2\Project2Application.class
+com\lumenore2\model2\Rating.class
