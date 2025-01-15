@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: api-gateway  # Name of the application (used for registration in Eureka)
+
+  cloud:
+    eureka:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka/  # URL of the Eureka Server to register with
+        register-with-eureka: true  # This enables the client to register itself with Eureka
+        fetch-registry: true  # This enables the client to fetch the registry of available services
+        health-check:
+          enabled: true  # Enable health checks for Eureka client
+        metadata:
+          instanceId: ${spring.application.name}:${random.value}  # Unique instance ID
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://user-service  # Use service name registered in Eureka
+          predicates:
+            - Path=/user/**
+        - id: rating-service
+          uri: lb://rating-service
+          predicates:
+              - Path=/rating/**
+server:
+  port: 8083  # Port where the API Gateway runs

@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/netlink
+    username: root
+    password: 1234
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  cloud:
+    eureka:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka/  # URL of the Eureka Server to register with
+        register-with-eureka: true  # This enables the client to register itself with Eureka
+        fetch-registry: true  # This enables the client to fetch the registry of available services
+        health-check:
+          enabled: true  # Enable health checks for Eureka client
+        metadata:
+          instanceId: ${spring.application.name}:${random.value}  # Unique instance ID
+
+  main:
+    web-application-type: reactive
+
+server:
+  port: 8082
+
